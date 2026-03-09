@@ -30,3 +30,13 @@ func ConnectDatabase() {
 	log.Println("✅ Database connected successfully!")
 
 }
+
+// MigrateDB runs auto migration for all models
+func MigrateDB(models ...interface{}) {
+	for _, model := range models {
+		if err := DB.AutoMigrate(model); err != nil {
+			log.Fatalf("❌ Failed to migrate %T: %v", model, err)
+		}
+		log.Printf("✅ Migrated table for %T", model)
+	}
+}

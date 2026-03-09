@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/RefiandiRz/pos-system/config"
+	"github.com/RefiandiRz/pos-system/internal/models"
 	"github.com/RefiandiRz/pos-system/routes"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/logger"
@@ -20,6 +21,11 @@ func main() {
 
 	// connect to database
 	config.ConnectDatabase()
+
+	// Auto migrate — creates tables if they don't exist
+	config.MigrateDB(
+		&models.User{},
+	)
 
 	// Create Fiber app
 	app := fiber.New(fiber.Config{
