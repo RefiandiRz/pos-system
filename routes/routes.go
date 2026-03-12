@@ -25,5 +25,19 @@ func SetupRoutes(app *fiber.App) {
 
 	// Protected routes (require authentication)
 	protected := api.Group("", middleware.Protected)
-	_ = protected
+
+	// Categories (admin only for write)
+	protected.Get("/categories", handlers.GetAllCategories)
+	protected.Get("/categories/:id", handlers.GetCategoryByID)
+	protected.Post("/categories", middleware.AdminOnly, handlers.CreateCategory)
+	protected.Put("/categories/:id", middleware.AdminOnly, handlers.UpdateCategory)
+	protected.Delete("/categories/:id", middleware.AdminOnly, handlers.DeleteCategory)
+
+	// Products (admin only for write)
+	protected.Get("/products", handlers.GetAllProducts)
+	protected.Get("/products/:id", handlers.GetProductByID)
+	protected.Post("/products", middleware.AdminOnly, handlers.CreateProduct)
+	protected.Put("/products/:id", middleware.AdminOnly, handlers.UpdateProduct)
+	protected.Delete("/products/:id", middleware.AdminOnly, handlers.DeleteProduct)
+
 }

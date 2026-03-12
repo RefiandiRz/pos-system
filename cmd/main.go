@@ -25,6 +25,8 @@ func main() {
 	// Auto migrate — creates tables if they don't exist
 	config.MigrateDB(
 		&models.User{},
+		&models.Category{},
+		&models.Product{},
 	)
 
 	// Create Fiber app
