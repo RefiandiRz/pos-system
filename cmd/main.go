@@ -27,6 +27,8 @@ func main() {
 		&models.User{},
 		&models.Category{},
 		&models.Product{},
+		&models.Transaction{},
+		&models.TransactionItem{},
 	)
 
 	// Create Fiber app

@@ -40,4 +40,8 @@ func SetupRoutes(app *fiber.App) {
 	protected.Put("/products/:id", middleware.AdminOnly, handlers.UpdateProduct)
 	protected.Delete("/products/:id", middleware.AdminOnly, handlers.DeleteProduct)
 
+	// Transactions (cashier + admin)
+	protected.Post("/transactions", handlers.CreateTransaction)
+	protected.Get("/transactions", handlers.GetAllTransaction)
+	protected.Get("/transactions/:id", handlers.GetTransactionByID)
 }

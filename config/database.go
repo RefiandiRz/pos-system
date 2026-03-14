@@ -11,6 +11,8 @@ import (
 
 var DB *gorm.DB
 
+type DBTransaction = gorm.DB
+
 func ConnectDatabase() {
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable TimeZone=Asia/Jakarta",
